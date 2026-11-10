@@ -3,37 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر شحن الألعاب الرقمية - شام كاش</title>
+    <title>متجر شحن الألعاب الرقمية</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
         body { font-family: 'Cairo', sans-serif; background-color: #0b0f19; color: #f8fafc; }
+        .game-card:hover { transform: translateY(-3px); border-color: #f59e0b; }
     </style>
 </head>
-<body class="bg-[#0b0f19] min-h-screen flex flex-col justify-between p-4">
-    <div class="max-w-md mx-auto w-full bg-[#131c2e] border border-[#1e293b] rounded-2xl p-5 shadow-lg my-auto space-y-4">
+<body class="bg-[#0b0f19] min-h-screen flex flex-col justify-between">
+
+    <!-- الهيدر العلوي -->
+    <header class="bg-[#131c2e] border-b border-[#1e293b] p-4 sticky top-0 z-50 flex justify-between items-center shadow-md">
+        <div class="flex items-center space-x-2 space-x-reverse">
+            <div class="bg-amber-500 text-black font-black px-2.5 py-1 rounded-lg text-sm">1S</div>
+            <span class="font-black text-lg tracking-wider text-white">GAMING STORE</span>
+        </div>
+        <div class="flex items-center space-x-3 space-x-reverse text-gray-300">
+            <i class="fa-solid fa-user text-lg"></i>
+            <i class="fa-solid fa-bars text-lg"></i>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="p-4 max-w-4xl mx-auto w-full space-y-6">
         
-        <div class="text-center">
-            <h1 class="text-xl font-bold text-amber-400 mb-1"><i class="fa-solid fa-gamepad"></i> متجر شحن الألعاب</h1>
-            <p class="text-xs text-gray-300">اشحن شدات ببجي فوراً عبر التحويل إلى محفظة شام كاش الخاصة بنا</p>
+        <!-- شريط البحث -->
+        <div class="relative">
+            <input type="text" placeholder="بحث عن لعبة، بطاقة، أو خدمة..." class="w-full bg-[#131c2e] border border-[#1e293b] rounded-xl px-4 py-3 text-sm text-white pr-10 focus:outline-none focus:border-amber-500">
+            <i class="fa-solid fa-magnifying-glass absolute top-3.5 right-3.5 text-gray-400"></i>
         </div>
 
-        <!-- قسم معلومات شام كاش -->
-        <div class="bg-black/30 border border-amber-500/30 rounded-xl p-3 text-center space-y-2">
-            <div class="text-xs text-amber-400 font-bold"><i class="fa-solid fa-wallet ml-1"></i> معلومات الدفع عبر شام كاش (Sham Cash)</div>
-            <div class="text-[11px] text-gray-300 break-all bg-[#0b0f19] p-2 rounded border border-gray-800 select-all font-mono">
-                839875cca2341bad76e1ffe721d13788
-            </div>
-            <button onclick="copySham()" class="text-xs bg-amber-500/20 text-amber-400 hover:bg-amber-500 hover:text-black font-semibold py-1.5 px-3 rounded-lg transition-all w-full">
-                <i class="fa-solid fa-copy ml-1"></i> نسخ معرف محفظة شام كاش
-            </button>
-        </div>
-
-        <!-- زر التواصل وإتمام الطلب -->
+        <!-- الأقسام الرئيسية -->
         <div>
-            <label class="block text-xs text-gray-300 mb-1">أدخل الآيدي (Player ID) الخاص بك:</label>
-            <input type="text" id="playerId" placeholder="مثال: 5123456789" class="w-full bg-black/40 border border-gray-700 rounded-xl px-3 py-2.5 text-sm text-white mb-3 focus:outline-none focus:border-amber-500">
+            <h2 class="text-sm font-bold text-amber-400 mb-3"><i class="fa-solid fa-gamepad ml-1"></i> أقسام الألعاب والخدمات</h2>
+            <div class="grid grid-cols-3 gap-3">
+                
+                <!-- قسم ببجي -->
+                <div onclick="selectCategory('pubg')" class="game-card bg-[#131c2e] border border-[#1e293b] rounded-2xl p-3 text-center cursor-pointer transition-all shadow">
+                    <div class="bg-amber-500/10 text-amber-400 w-12 h-12 mx-auto rounded-full flex items-center justify-center text-xl mb-2">
+                        <i class="fa-solid fa-crosshairs"></i>
+                    </div>
+                    <span class="text-xs font-bold block text-white">ببجي موبايل</span>
+                </div>
+
+                <!-- قسم فري فاير -->
+                <div onclick="selectCategory('freefire')" class="game-card bg-[#131c2e] border border-[#1e293b] rounded-2xl p-3 text-center cursor-pointer transition-all shadow">
+                    <div class="bg-red-500/10 text-red-400 w-12 h-12 mx-auto rounded-full flex items-center justify-center text-xl mb-2">
+                        <i class="fa-solid fa-fire"></i>
+                    </div>
+                    <span class="text-xs font-bold block text-white">فري فاير</span>
+                </div>
+
+                <!-- قسم كلاش أوف كلانس -->
+                <div onclick="selectCategory('clash')" class="game-card bg-[#131c2e] border border-[#1e293b] rounded-2xl p-3 text-center cursor-pointer transition-all shadow">
+                    <div class="bg-blue-500/10 text-blue-400 w-12 h-12 mx-auto rounded-full flex items-center justify-center text-xl mb-2">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <span class="text-xs font-bold block text-white">كلاش أوف كلانس</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- قسم باقات الشحن (يظهر عند اختيار القسم أو افتراضياً لببجي) -->
+        <div id="productsSection" class="space-y-3">
+            <h3 class="text-xs font-bold text-gray-300 border-r-2 border-amber-500 pr-2">باقات شدات ببجي موبايل (UC)</h3>
             
-            <a href="javascript:void(0);" onclick="sendOrder()" class="block w-full bg-amber-500 hover:bg-amber-600 text-black font-bold text-center py-3 rounded-xl shadow transition-all">
-                <i class="fa-brands fa-telegram ml-1 text-lg"></i> إرسال الطل
+            <div class="grid grid-cols-2 gap-3">
+                <!-- باقة 1 -->
+                <div class="bg-[#131c2e] border border-[#1e293b] p-3 rounded-xl flex flex-col justify-between">
+                    <div>
+                        <div class="text-amber-400 font-black text-sm mb-1">60 شدة ببجي</div>
+                        <div class="text-[11px] text-gray-400">شحن سريع عبر الآيدي</div>
+                    </div>
+                    <div class="mt-3 flex items-center justify-between">
+                        <span class="text-xs font-bold text-white">$0.91</span>
+                        <button onclick="openCheckout('60 شدة ببجي', '$0.91')" class="bg-amber-500 hover:bg-amber-600 text-black text-xs font-bold px-3 py-1.5 rounded-lg transition-all">شحن</button>
+                    </div>
+                </div>
+
+                <!-- باقة 2 -->
+                <div class="bg-[#131c2e] border border-[#1e293b] p-3 rounded-xl flex flex-col justify-between">
+                    <div>
+                        <div class="text-amber-400 font-black text-sm mb-1">325 شدة ببجي</div>
+                        <div class="text-[11px] text-gray-400">شحن سريع عبر الآيدي</div>
+                    </div>
+                    <div class="mt-3 flex items-center justify-between">
+                        <span class="text-xs font-bold text-white">$4.59</span>
+                        <button onclick="openCheckout('325 شدة ببجي', '$4.59')" class="bg-amber-500 hover:bg-amber-600 text-black text-xs font-bold px-3 py-1.5 rounded-lg transition-all">شحن</button>
+                    </div>
+                </div>
+
+                <!-- باقة 3 -->
+                <div class="bg-[#131c2e] border border-[#1e293b] p-3 rounded-xl flex flex-col justify-between">
+                    <div>
+                        <div class="text-amber-400 font-black text-sm mb-1">660 شدة ببجي</div>
+                        <div class="text-[11px] text-gray-400">شحن سريع عبر الآيدي</div>
+                    </div>
+                    <div class="mt-3 flex items-center justify-between">
+                        <span class="text-xs font-bold text-white">$9.18</span>
+                        <button onclick="openCheckout('660 شدة ببجي', '$9.18')" class="bg-amber-500 hover:bg-amber-600 text-black text-xs font-bold px-3 py-1.5 rounded-lg transition-all">شحن</button>
+                    </div>
+                </div>
+
+                <!-- باقة 4 -->
+                <div class="bg-[#131c2e] border border-[#1e293b] p-3 rounded-xl flex flex-col justify-between">
+                    <div>
+                        <div class="text-amber-400 font-black text-sm mb-1">1800 شدة ببجي</div>
+                        <div class="text-[11px] text-gray-400">شحن سريع عبر الآيدي</div>
+                    </div>
+                    <div class="mt-3 flex items-center justify-between">
+                        <span class="text-xs font-bold text-white">$23.22</span>
+                        <button onclick="openCheckout('1800 شدة ببجي', '$23.22')" class="bg-amber-500 hover:bg-amber-600 text-black text-xs font-bold px-3 py-1.5 rounded-lg transition-all">شحن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- صندوق الدفع وإتمام الطلب -->
+        <div id="checkoutBox" class="bg-[#131c2e] border border-amber-500/40 rounded-2xl p-4 space-y-4 shadow-lg">
+            <h3 class="text-xs font-bold text-amber-400 flex items-center">
+                <i class="fa-solid fa-wallet ml-1.5 text-sm"></i> الدفع وإتمام الطلب عبر شام كاش (Sham Cash)
+            </h3>
+            
+            <div class="text-xs text-gray-300">
+                معرف محفظة شام كاش الخاصة بنا للتحويل:
+                <div class="bg-black/40 p-2.5 rounded-xl text-amber-400 font-mono text-[11px] select-all mt-1 border border-gray-800 break-all">
+                    839875cca2341bad76e1ffe721d13788
+                </div>
+                <button onclick="copySham()" class="mt-2 w-full bg-amber-500/20 text-amber-400 hover:bg-amber-500 hover:text-black font-bold py-1.5 rounded-lg text-xs transition-all">
+                    <i class="fa-solid fa-copy ml-1"></i> نسخ معرف المحفظة
+                </button>
+            </div>
+
+            <div>
+                <label class="block text-xs text-gray-300 mb-1" id="selectedItemLabel">المنتج المحدد: 60 شدة ببجي</label>
+                <input type="text" id="playerId" placeholder="أدخل الآيدي (Player ID) الخاص بك" class="w-full bg-black/40 border border-gray-700 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500 mb-3">
+                
+                <button onclick="sendOrder()" class="w-full bg-amber-500 hover:bg-amber-600 text-black font-black py-3 rounded-xl shadow-md transition-all flex items-center justify-center text-sm">
+                    <i class="fa-brands fa-telegram ml-1 text-base"></i> إرسال الطلب وإيصال التحويل للتلغرام
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- الفوتر -->
+    <footer class="text-center p-4 text-[10px] text-gray-500 border-t border-[#1e293b] mt-8">
+        جميع الحقوق محفوظة © متجر الألعاب الرقمية | الدعم الفني: <span class="text-amber-400 font-bold">7383417915</span>
+    </footer>
+
+    <script>
+        let currentItem = "60 شدة ببجي";
+
+        function openCheckout(item, price) {
+            currentItem = `${item} (${price})`;
+            document.getElementById('selectedItemLabel').innerText = `المنتج المحدد: ${currentItem}`;
+            document.getElementById('checkoutBox').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function copySham() {
+            navigator.clipboard.writeText("839875cca2341bad76e1ffe721d13788");
+            alert('تم نسخ معرف محفظة شام كاش بنجاح!');
+        }
+
+        function sendOrder() {
+            const playerId = document.getElementById('playerId').value.trim();
+            if (!playerId) {
+                alert('الرجاء إدخال الآيدي (Player ID) الخاص بك!');
+                document.getElementById('playerId').focus();
+                return;
+            }
+            const msg = `🎮 طلب شحن جديد:%0A- المنتج: ${currentItem}%0A- الآيدي: ${playerId}%0A- طريقة الدفع: شام كاش (839875cca2341bad76e1ffe721d13788)%0Aيرجى التحقق وتنفيذ الطلب.`;
+            window.open(`https://t.me/7383417915?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function selectCategory(cat) {
+            if(cat === 'freefire') {
+                alert('تم اختيار قسم فري فاير - سيتم تحديث الباقات قريباً!');
+            } else if(cat === 'clash') {
+                alert('تم اختيار قسم كلاش أوف كلانس - سيتم تحديث الباقات قريباً!');
+            } else {
+                alert('أنت في قسم ببجي موبايل الآن.');
+            }
+        }
+    </script>
+</body>
+</html>
